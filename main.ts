@@ -1,12 +1,12 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
-let toDo = [];
+let toDo:any = [];
 let condition = true;
 let greet= await inquirer.prompt({
   name:"initial",
   message:"Hello, how would you like to add items to your list today?",
   type:"list",
-  choices:["Input manually","Quick add"]
+  choices:["Input manually","Quick add","View Items"]
 })
 if (greet.initial === "Input manually"){
 while (condition) {
@@ -19,12 +19,24 @@ while (condition) {
         {name:"confirm",
         message:"Are you sure you want to add this item to the to do list?",
         type:"confirm",
-        default:false}
+        default:true}
     ]
-    );
+    );if (toDoList.tasks.length>0){
     toDo.push(toDoList.tasks);
-    console.log(toDo);
-    condition = toDoList.confirm
+    console.log(toDo);} 
+    else {console.log("Please enter a task you wish to add to your to do list!")};
+    if (toDoList.confirm===true){
+    let progress = await inquirer.prompt({
+      name:"continue",
+      message:"What would you like to do now?",
+      type:"list",
+      choices:["View Items","Continue", "Exit"]
+    })
+    if (progress.continue === "View Items"){
+      console.log(toDo)
+    } else if (progress.continue === "Continue") {condition = toDoList.confirm;}
+   else {condition = false}}   
+    else {condition = toDoList.confirm;}      
 }}
 else if (greet.initial === "Quick add"){
   while (condition) {
@@ -38,11 +50,24 @@ else if (greet.initial === "Quick add"){
           {name:"confirmation",
           message:"Are you sure you want to add this item to the to do list?",
           type:"confirm",
-          default:false}
+          default:true}
       ]
       );
       toDo.push(to_do.task);
       console.log(toDo);
-      condition = to_do.confirmation
+      if (to_do.confirmation === true){
+      let progress = await inquirer.prompt({
+        name:"continue",
+        message:"What would you like to do now?",
+        type:"list",
+        choices:["View Items","Continue", "Exit"]
+      })
+      if (progress.continue === "View Items"){
+        console.log(toDo);
+      } else if (progress.continue === "Continue") {condition = to_do.confirmation;}
+    else {condition = false}}
+      else {condition = to_do.confirmation;}
   }}
-  
+  else if (greet.initial === "View Items"){
+    console.log(toDo);
+  }                  

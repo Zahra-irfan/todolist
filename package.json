@@ -1,6 +1,6 @@
 {
   "name": "todolist_zahra_irfan",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "A to do list using typescript, node js and inquirer.",
   "main": "index.js",
   "type": "module",
