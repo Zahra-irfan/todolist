@@ -70,8 +70,19 @@ if (greet.initial === "Input manually") {
                     type: "number",
                 });
                 let deletes = index.number - 1;
-                toDo.splice(deletes, 1);
-                toDo.forEach((items) => { console.log(items); });
+                let i = toDo.length;
+                if (toDo.length > deletes) {
+                    toDo.splice(deletes, 1);
+                    toDo.forEach((items) => { console.log(items); });
+                }
+                else if (i === deletes) {
+                    console.log("Can not find an item at the given position! \nPlease enter an appropriate value.");
+                    toDo.forEach((items) => { console.log(items); });
+                }
+                else if (toDo.length < deletes) {
+                    console.log("Can not find an item at the given position! \nPlease enter an appropriate value.");
+                    toDo.forEach((items) => { console.log(items); });
+                }
                 let choice2 = await inquirer.prompt({
                     name: "choose",
                     message: "What would you like to do now?",
@@ -86,7 +97,7 @@ if (greet.initial === "Input manually") {
                 }
                 ;
             }
-            // If the user wsihes to exit the to do list.
+            // If the user wishes to exit the to do list.
             else {
                 condition = false;
             }
@@ -145,8 +156,19 @@ else if (greet.initial === "Quick add") {
                     type: "number",
                 });
                 let deletes = index.number - 1;
-                toDo.splice(deletes, 1);
-                toDo.forEach((items) => { console.log(items); });
+                let i = toDo.length;
+                if (toDo.length > deletes) {
+                    toDo.splice(deletes, 1);
+                    toDo.forEach((items) => { console.log(items); });
+                }
+                else if (i === deletes) {
+                    console.log("Can not find an item at the given position! \nPlease enter an appropriate value.");
+                    toDo.forEach((items) => { console.log(items); });
+                }
+                else if (toDo.length < deletes) {
+                    console.log("Can not find an item at the given position! \nPlease enter an appropriate value.");
+                    toDo.forEach((items) => { console.log(items); });
+                }
                 let choice2 = await inquirer.prompt({
                     name: "choose",
                     message: "What would you like to do now?",
